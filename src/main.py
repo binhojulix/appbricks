@@ -28,7 +28,7 @@ def read_root():
 
 @app.get("/cluster")
 def lista_cluster():
-    token = Token()
+    token = DataBricksProp()
     return token.lista_cluster()
 
 def execute_job(self):
