@@ -1,4 +1,5 @@
-from src.databricksprop import DataBricksProp
+from src.databricks import DataBricksProp
+from src.models import Job, ExecuteJob
 from fastapi import FastAPI
 from databricks_cli.runs.api import RunsApi
 from databricks_cli.jobs.api import JobsApi
@@ -31,6 +32,45 @@ def lista_cluster():
     token = DataBricksProp()
     return token.lista_cluster()
 
-def execute_job(self):
-    runApi = RunsApi()
-    
+@app.post("/executejob")
+def executejob(job:ExecuteJob):
+    databricks = DataBricksProp()
+    return databricks.execute_job(job)
+
+
+@app.post("/createjob")
+def createjob(job: Job):
+    databricks = DataBricksProp()
+    return databricks.create_job(job)
+
+
+@app.get("/listjob")
+def listjob():
+    databricks = DataBricksProp()
+    return databricks.list_job()
+
+@app.get("/schedulle")
+def schedulle():
+    databricks = DataBricksProp()
+    return databricks.schedulle()
+
+
+@app.get("/dowloadfile")
+def downloadfile():
+    databricks = DataBricksProp()
+    return databricks.downloadfile()
+
+@app.get("/uploadfile")
+def uploadfile():
+    databricks = DataBricksProp()
+    return databricks.uploadfile()
+
+@app.get("/downloadmultiplesfile")
+def downloadmultiplefile():
+    databricks = DataBricksProp()
+    return databricks.downloadmultiplefile()
+
+@app.get("/getexecutejobfinshed")
+def getexecutejobfinshed():
+     databricks = DataBricksProp()
+     return databricks.getexecutedjob()
